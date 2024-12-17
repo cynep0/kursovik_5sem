@@ -22,9 +22,9 @@ add_buyer::~add_buyer()
 
 void add_buyer::on_pushButton_clicked()
 {
-    if (ui->lineEdit_id->text() != "" && ui->lineEdit_fio->text() != "" && ui->lineEdit_pas->text() != "")
+    if (ui->lineEdit_id->text() != "" && ui->lineEdit_fio->text() != "" && ui->lineEdit_pas->text() != "" && ui->lineEdit_phone->text() != "" && ui->lineEdit_credit->text() != "")
     {
-        buyer buyer1(ui->lineEdit_id->text().toInt(), ui->lineEdit_fio->text(), ui->lineEdit_pas->text());
+        buyer buyer1(ui->lineEdit_id->text().toInt(), ui->lineEdit_fio->text(), ui->lineEdit_pas->text(), ui->lineEdit_phone->text(), ui->lineEdit_credit->text().toInt());
         buyer_comp1->add_buyer(buyer1);
         this->close();
     }

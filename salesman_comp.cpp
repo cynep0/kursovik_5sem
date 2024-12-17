@@ -1,10 +1,10 @@
-#include "buyer_comp.h"
+#include "salesman_comp.h"
 #include <QMessageBox>
 
 
-bool buyer_comp::find(int id)
+bool salesman_comp::find(int id)
 {
-    for (buyer b: list_buyers) {
+    for (salesman b: list_salesmans) {
         if (b.get_id() == id)
             return true;
     }
@@ -12,21 +12,21 @@ bool buyer_comp::find(int id)
 }
 
 
-buyer buyer_comp::get_buyer(int id) {
-    for (buyer& b: list_buyers) {
+salesman salesman_comp::get_salesman(int id) {
+    for (salesman& b: list_salesmans) {
         if (b.get_id() == id) {
             return b;
         }
     }
-    return buyer(0, "", "", "", 0);
+    return salesman(0, "", "", "");
 }
 
 
-void buyer_comp::add_buyer(buyer buyer)
+void salesman_comp::add_salesman(salesman salesman)
 {
-    if (!find(buyer.get_id()))
+    if (!find(salesman.get_id()))
     {
-        list_buyers.push_back(buyer);
+        list_salesmans.push_back(salesman);
         notify_observers();
     }
     else
@@ -38,15 +38,15 @@ void buyer_comp::add_buyer(buyer buyer)
     }
 }
 
-void buyer_comp::remove_buyer(int id)
+void salesman_comp::remove_salesman(int id)
 {
-    for (auto iter = list_buyers.begin(); iter != list_buyers.end(); iter++)
+    for (auto iter = list_salesmans.begin(); iter != list_salesmans.end(); iter++)
     {
         qDebug() <<(*iter).get_id();
         if ((*iter).get_id() == id)
         {
             qDebug("------");
-            list_buyers.erase(iter);
+            list_salesmans.erase(iter);
             notify_observers();
             return;
         }
@@ -58,7 +58,7 @@ void buyer_comp::remove_buyer(int id)
 
 }
 
-std::list<buyer> buyer_comp::get_buyers()
+std::list<salesman> salesman_comp::get_salesmans()
 {
-    return list_buyers;
+    return list_salesmans;
 }

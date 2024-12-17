@@ -9,6 +9,8 @@
 #include "buyer_comp.h"
 #include "flat_comp.h"
 #include "sale_comp.h"
+#include "salesman_comp.h"
+#include "broker_comp.h"
 
 #include "add_buyer.h"
 #include "add_flat.h"
@@ -37,8 +39,12 @@ private:
     QStandardItemModel* model_flat;
     QStandardItemModel* model_buyer;
     QStandardItemModel* model_sale;
+    QStandardItemModel* model_salesman;
+    QStandardItemModel* model_broker;
     buyer_comp buyer_comp;
     flat_comp flat_comp;
     sale_comp sale_comp;
+    salesman_comp salesman_comp;
+    broker_comp broker_comp;
 };
 #endif // MAINWINDOW_H

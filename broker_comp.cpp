@@ -1,10 +1,11 @@
-#include "buyer_comp.h"
+#include "broker_comp.h"
+
 #include <QMessageBox>
 
 
-bool buyer_comp::find(int id)
+bool broker_comp::find(int id)
 {
-    for (buyer b: list_buyers) {
+    for (broker b: list_brokers) {
         if (b.get_id() == id)
             return true;
     }
@@ -12,21 +13,21 @@ bool buyer_comp::find(int id)
 }
 
 
-buyer buyer_comp::get_buyer(int id) {
-    for (buyer& b: list_buyers) {
+broker broker_comp::get_broker(int id) {
+    for (broker& b: list_brokers) {
         if (b.get_id() == id) {
             return b;
         }
     }
-    return buyer(0, "", "", "", 0);
+    return broker(0, "", "", "", 0);
 }
 
 
-void buyer_comp::add_buyer(buyer buyer)
+void broker_comp::add_broker(broker broker)
 {
-    if (!find(buyer.get_id()))
+    if (!find(broker.get_id()))
     {
-        list_buyers.push_back(buyer);
+        list_brokers.push_back(broker);
         notify_observers();
     }
     else
@@ -38,15 +39,15 @@ void buyer_comp::add_buyer(buyer buyer)
     }
 }
 
-void buyer_comp::remove_buyer(int id)
+void broker_comp::remove_broker(int id)
 {
-    for (auto iter = list_buyers.begin(); iter != list_buyers.end(); iter++)
+    for (auto iter = list_brokers.begin(); iter != list_brokers.end(); iter++)
     {
         qDebug() <<(*iter).get_id();
         if ((*iter).get_id() == id)
         {
             qDebug("------");
-            list_buyers.erase(iter);
+            list_brokers.erase(iter);
             notify_observers();
             return;
         }
@@ -58,7 +59,8 @@ void buyer_comp::remove_buyer(int id)
 
 }
 
-std::list<buyer> buyer_comp::get_buyers()
+std::list<broker> broker_comp::get_brokers()
 {
-    return list_buyers;
+    return list_brokers;
 }
+

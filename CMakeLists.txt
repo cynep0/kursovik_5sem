@@ -34,6 +34,14 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         sale_comp.h sale_comp.cpp
         observer.h observer.cpp
         subject.h subject.cpp
+        salesman.h salesman.cpp
+        salesman_comp.h salesman_comp.cpp
+        broker.h broker.cpp
+        broker_comp.h broker_comp.cpp
+        add_broker.h add_broker.cpp add_broker.ui
+        add_salesman.h add_salesman.cpp add_salesman.ui
+
+
 
     )
 # Define target properties for Android with Qt 6 as:

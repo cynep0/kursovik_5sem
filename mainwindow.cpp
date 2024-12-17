@@ -26,26 +26,40 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     model_sale = new QStandardItemModel(this);
     ui->tableView_sale->setModel(model_sale);
 
+    model_salesman = new QStandardItemModel(this);
+    ui->tableView_salesman->setModel(model_salesman);
+
+    model_broker = new QStandardItemModel(this);
+    ui->tableView_broker->setModel(model_broker);
+
     model_flat->setHorizontalHeaderLabels(QStringList() << "id квартиры" << "адрес" << "площадь" << "наличие страховки" << "состояние продажи");
-    model_buyer->setHorizontalHeaderLabels(QStringList() << "id покупателя" << "ФИО" << "паспорт");
+    model_buyer->setHorizontalHeaderLabels(QStringList() << "id покупателя" << "ФИО" << "паспорт" << "номер телефона" << "кредитный рейтинг");
     model_sale->setHorizontalHeaderLabels(QStringList() << "id договора" << "id покупателя" << "id квартиры");
+    model_salesman->setHorizontalHeaderLabels(QStringList() << "id продовца" << "ФИО" << "паспорт" << "номер телефона");
+    model_broker->setHorizontalHeaderLabels(QStringList() << "id маклера" << "ФИО" << "паспорт" << "номер телефона" << "кол-во конрактов");
 
 
     //задаем значения
-    buyer buyer1(1, "Инюшин Михаил Андреевич", "4018 049013");
-    buyer buyer2(2, "Козлов Никита Александрович", "4018 198263");
-    buyer buyer3(3, "Ивонов Ивон Иванович", "1111 111111");
-    buyer buyer4(4, "Проверкин Проверяльщик Проверялков", "1234 567890");
+    buyer buyer1(1, "Инюшин Михаил Андреевич", "4018 049013", "8 911 173 31 66", 700);
+    buyer buyer2(2, "Козлов Никита Александрович", "4018 198263", "8 912 112 11 56", 600);
+    buyer buyer3(3, "Ивонов Ивон Иванович", "1111 111111", "8 812 503 01 00", 500);
+    buyer buyer4(4, "Проверкин Проверяльщик Проверялков", "1234 567890", "8 611 666 61 66", 1000);
 
     buyer_comp.add_buyer(buyer1);
     buyer_comp.add_buyer(buyer2);
     buyer_comp.add_buyer(buyer3);
     buyer_comp.add_buyer(buyer4);
 
+
+    salesman salesman1(1, "Инюшин Андрей Юрьевич", "4002 132015", "8 911 111 22 66");
+
+    salesman_comp.add_salesman(salesman1);
+
+
     flat flat1(1, "ул. Коломенская д.15-17 кв.93", 60, true, false);
     flat flat2(2, "ул. Коломенская д.15-17 кв.90", 60, false, false);
     flat flat3(3, "ул. Ивановская д.57 кв.6", 60, false, false);
-    flat flat4(4, "ул. Пукина д.Колотушкина кв.37", 60, false, false);
+    flat flat4(4, "ул. Пушкина д.Колотушкина кв.37", 60, false, false);
     flat flat5(5, "Ленинский д.6 кв.226", 60, false, false);
 
 
@@ -54,6 +68,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     flat_comp.add_flat(flat3);
     flat_comp.add_flat(flat4);
     flat_comp.add_flat(flat5);
+
+
+    broker broker1(1, "Полин Даниил Владимирович", "4018 232343", "8 923 123 53 63", 0);
+
+    broker_comp.add_broker(broker1);
 
 
     sale sale1(1, 1, 1);
@@ -77,6 +96,8 @@ void MainWindow::update() {
         row << new QStandardItem(QString::number(buyer.get_id()));
         row << new QStandardItem(buyer.get_name());
         row << new QStandardItem(buyer.get_pas());
+        row << new QStandardItem(buyer.get_phone_number());
+        row << new QStandardItem(QString::number(buyer.get_credit_rating()));
         model_buyer->appendRow(row);
     }
 
@@ -98,6 +119,29 @@ void MainWindow::update() {
         row << new QStandardItem(QString::number(sale.get_id_buyer()));
         row << new QStandardItem(QString::number(sale.get_id_flat()));
         model_sale->appendRow(row);
+    }
+
+
+    model_salesman->removeRows(0, model_salesman->rowCount());
+    for (const salesman& salesman : salesman_comp.get_salesmans()) {
+        QList<QStandardItem*> row;
+        row << new QStandardItem(QString::number(salesman.get_id()));
+        row << new QStandardItem(salesman.get_name());
+        row << new QStandardItem(salesman.get_pas());
+        row << new QStandardItem(salesman.get_phone_number());
+        model_salesman->appendRow(row);
+    }
+
+
+    model_broker->removeRows(0, model_broker->rowCount());
+    for (const broker& broker : broker_comp.get_brokers()) {
+        QList<QStandardItem*> row;
+        row << new QStandardItem(QString::number(broker.get_id()));
+        row << new QStandardItem(broker.get_name());
+        row << new QStandardItem(broker.get_pas());
+        row << new QStandardItem(broker.get_phone_number());
+        row << new QStandardItem(QString::number(broker.get_number_of_sales()));
+        model_broker->appendRow(row);
     }
 }
 
