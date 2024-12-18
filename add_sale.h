@@ -5,6 +5,7 @@
 #include "buyer_comp.h"
 #include "flat_comp.h"
 #include "sale_comp.h"
+#include "broker_comp.h"
 
 namespace Ui {
 class add_sale;

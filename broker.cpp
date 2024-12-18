@@ -1,5 +1,8 @@
 #include "broker.h"
 
+broker::broker(){}
+
+
 broker::broker(int id, QString name, QString pas, QString phone_number, int number_of_sales)
 {
     this->id = id;

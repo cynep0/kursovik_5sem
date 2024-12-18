@@ -1,5 +1,7 @@
 #include "buyer.h"
 
+buyer::buyer(){}
+
 
 buyer::buyer(int id, QString name, QString pas, QString phone_number, int credit_rating)
 {

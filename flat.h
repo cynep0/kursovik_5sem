@@ -22,6 +22,7 @@ private:
     int rate;
     salesman seller;
 public:
+    flat();
     flat(int id, QString adres, estate_type type, int area, int cost, bool is_ins, bool is_sold, int rate, salesman &seller);
     int get_id() const;
     QString get_adres() const;

@@ -24,7 +24,11 @@ void add_sale::on_pushButton_clicked()
 {
     if (ui->lineEdit_id->text() != "" && ui->lineEdit_id_buyer->text() != "" && ui->lineEdit_id_flat->text() != "")
     {
-        sale sale1(ui->lineEdit_id->text().toInt(), ui->lineEdit_id_flat->text().toInt(), ui->lineEdit_id_buyer->text().toInt());
+        buyer buyer4(4, "Проверкин Проверяльщик Проверялков", "1234 567890", "8 611 666 61 66", 1000);
+        salesman salesman2(2, "Ковалева Анна Александровна", "4002 112345", "8 911 127 43 73");
+        flat flat4(4, "ул. Пушкина д.Колотушкина", flat::estate_type::COTTAGE, 60, 17000000, false, false, 10, salesman2);
+        broker broker3(3, "Алатырев Данила Артемович", "4018 274642", "8 933 575 54 34", 0);
+        sale sale1(ui->lineEdit_id->text().toInt(), flat4, buyer4, broker3);
         sale_comp1->add_sale(sale1, *flat_comp1, *buyer_comp1);
         this->close();
     }

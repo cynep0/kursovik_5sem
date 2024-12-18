@@ -11,6 +11,7 @@ private:
     QString phone_number;
     int number_of_sales;
 public:
+    broker();
     broker(int id, QString name, QString pas, QString phone_number, int number_of_sales);
     int get_id() const;
     QString get_name() const;

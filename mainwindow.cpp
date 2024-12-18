@@ -36,7 +36,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     model_flat->setHorizontalHeaderLabels(QStringList() << "id квартиры" << "адрес" << "тип" << "площадь" << "цена (руб.)" << "наличие страховки" << "состояние продажи" << "оценка" << "Продавец" << "id");
     model_buyer->setHorizontalHeaderLabels(QStringList() << "id покупателя" << "ФИО" << "паспорт" << "номер телефона" << "кредитный рейтинг");
-    model_sale->setHorizontalHeaderLabels(QStringList() << "id договора" << "id покупателя" << "id квартиры");
+    model_sale->setHorizontalHeaderLabels(QStringList() << "id договора" << "id покупателя" << "ФИО покупателя" << "id квартиры" << "адрес квартиры" << "id продавца" << "ФИО продавца" << "id маклера" << "ФИО маклера");
     model_salesman->setHorizontalHeaderLabels(QStringList() << "id продовца" << "ФИО" << "паспорт" << "номер телефона");
     model_broker->setHorizontalHeaderLabels(QStringList() << "id маклера" << "ФИО" << "паспорт" << "номер телефона" << "кол-во конрактов");
 
@@ -54,15 +54,22 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
 
     salesman salesman1(1, "Инюшин Андрей Юрьевич", "4002 132015", "8 911 111 22 66");
+    salesman salesman2(2, "Ковалева Анна Александровна", "4002 112345", "8 911 127 43 73");
+    salesman salesman3(3, "Инюшина Галина Петровна", "3999 635837", "8 911 747 86 92");
+    salesman salesman4(4, "Маликова Алина Максимовна", "4018 834645", "8 812 728 723 77");
+
 
     salesman_comp.add_salesman(salesman1);
+    salesman_comp.add_salesman(salesman2);
+    salesman_comp.add_salesman(salesman3);
+    salesman_comp.add_salesman(salesman4);
 
 
     flat flat1(1, "ул. Коломенская д.15-17 кв.93", flat::estate_type::FLAT, 60, 10000000, true, false, 9, salesman1);
     flat flat2(2, "ул. Коломенская д.15-17 кв.90", flat::estate_type::FLAT, 60, 9000000, false, false, 8, salesman1);
     flat flat3(3, "ул. Ивановская д.57 кв.6",flat::estate_type::OFFICE, 60, 5000000, false, false, 6, salesman1);
-    flat flat4(4, "ул. Пушкина д.Колотушкина", flat::estate_type::COTTAGE, 60, 17000000, false, false, 10, salesman1);
-    flat flat5(5, "Ленинский д.6 кв.226", flat::estate_type::FLAT, 60, 5000000, false, false, 5, salesman1);
+    flat flat4(4, "ул. Пушкина д.Колотушкина", flat::estate_type::COTTAGE, 60, 17000000, false, false, 10, salesman2);
+    flat flat5(5, "Ленинский д.6 кв.226", flat::estate_type::FLAT, 60, 5000000, false, false, 5, salesman3);
 
 
     flat_comp.add_flat(flat1);
@@ -72,14 +79,20 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     flat_comp.add_flat(flat5);
 
 
-    broker broker1(1, "Полин Даниил Владимирович", "4018 232343", "8 923 123 53 63", 0);
+    broker broker1(1, "Полин Даниил Владимирович", "4018 232343", "8 923 123 53 63", 1);
+    broker broker2(2, "Лещев Александр Иванович", "4016 384739", "8 922 234 22 34", 1);
+    broker broker3(3, "Алатырев Данила Артемович", "4018 274642", "8 933 575 54 34", 1);
+    broker broker4(4, "Пенязь Анастасия Сергеевна", "4018 343453", "8 944 668 24 56", 0);
 
     broker_comp.add_broker(broker1);
+    broker_comp.add_broker(broker2);
+    broker_comp.add_broker(broker3);
+    broker_comp.add_broker(broker4);
 
 
-    sale sale1(1, 1, 1);
-    sale sale2(2, 2, 3);
-    sale sale3(3, 3, 3);
+    sale sale1(1, flat1, buyer1, broker1);
+    sale sale2(2, flat2, buyer3, broker2);
+    sale sale3(3, flat3, buyer3, broker3);
 
     sale_comp.add_sale(sale1, flat_comp, buyer_comp);
     sale_comp.add_sale(sale2, flat_comp, buyer_comp);
@@ -135,8 +148,14 @@ void MainWindow::update() {
     for (const sale& sale : sale_comp.get_sales()) {
         QList<QStandardItem*> row;
         row << new QStandardItem(QString::number(sale.get_id()));
-        row << new QStandardItem(QString::number(sale.get_id_buyer()));
-        row << new QStandardItem(QString::number(sale.get_id_flat()));
+        row << new QStandardItem(QString::number(sale.get_buyer().get_id()));
+        row << new QStandardItem(sale.get_buyer().get_name());
+        row << new QStandardItem(QString::number(sale.get_flat().get_id()));
+        row << new QStandardItem(sale.get_flat().get_adres());
+        row << new QStandardItem(QString::number(sale.get_flat().get_salesman().get_id()));
+        row << new QStandardItem(sale.get_flat().get_salesman().get_name());
+        row << new QStandardItem(QString::number(sale.get_broker().get_id()));
+        row << new QStandardItem(sale.get_broker().get_name());
         model_sale->appendRow(row);
     }
 

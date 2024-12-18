@@ -1,5 +1,7 @@
 #include "flat.h"
 
+flat::flat(){}
+
 
 flat::flat(int id, QString adres, estate_type type, int area, int cost,  bool is_ins, bool is_sold, int rate, salesman &seller)
 {

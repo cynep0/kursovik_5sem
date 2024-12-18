@@ -1,10 +1,11 @@
 #include "sale.h"
 
-sale::sale(int id, int id_flat, int id_buyer)
+sale::sale(int id, flat flat, buyer buyer, broker broker)
 {
     this->id = id;
-    this->id_flat = id_flat;
-    this->id_buyer = id_buyer;
+    flat1 = flat;
+    buyer1 = buyer;
+    broker1 = broker;
 }
 
 
@@ -14,15 +15,20 @@ int sale::get_id() const
 }
 
 
-int sale::get_id_flat() const
+const flat& sale::get_flat() const
 {
-    return id_flat;
+    return flat1;
 }
 
 
-int sale::get_id_buyer() const
+const buyer& sale::get_buyer() const
 {
-    return id_buyer;
+    return buyer1;
 }
 
+
+const broker& sale::get_broker() const
+{
+    return broker1;
+}
 

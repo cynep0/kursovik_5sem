@@ -11,6 +11,7 @@ private:
     QString phone_number;
     int credit_rating;
 public:
+    buyer();
     buyer(int id, QString name, QString pas, QString phone_number, int credit_rating);
     int get_id() const;
     QString get_name() const;
