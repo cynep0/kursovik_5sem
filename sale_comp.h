@@ -16,10 +16,14 @@ private:
 public:
     bool find(int id);
     bool find_by_buyer(int id_b);
+    bool find_by_broker(int id_broker);
+    bool find_by_seller(int id_seller);
     void add_sale(sale sale, flat_comp& flat_comp, buyer_comp& buyer_comp, broker_comp& broker_comp);
     void remove_sale(int id, flat_comp& flat_comp);
     void remove_sale_by_flat(int id_flat);
-    void remove_sale_by_buyer(int id_buyer,flat_comp& flat_comp);
+    void remove_sale_by_buyer(int id_buyer);
+    void remove_sale_by_broker(int id_broker);
+    void remove_sale_by_seller(int id_seller);
     std::list<sale> get_sales();
 };
 

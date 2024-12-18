@@ -40,6 +40,10 @@ private slots:
 
     void on_btn_add_broker_clicked();
 
+    void on_btn_del_salesman_clicked();
+
+    void on_btn_del_broker_clicked();
+
 private:
     Ui::MainWindow *ui;
     QStandardItemModel* model_flat;

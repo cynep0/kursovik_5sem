@@ -22,6 +22,26 @@ bool sale_comp::find_by_buyer(int id_b)
 }
 
 
+bool sale_comp::find_by_broker(int id_broker)
+{
+    for (sale s: list_sales) {
+        if (s.get_broker().get_id() == id_broker)
+            return true;
+    }
+    return false;
+}
+
+
+bool sale_comp::find_by_seller(int id_seller)
+{
+    for (sale s: list_sales) {
+        if (s.get_flat().get_salesman().get_id() == id_seller)
+            return true;
+    }
+    return false;
+}
+
+
 void sale_comp::add_sale(sale sale, flat_comp& flat_comp, buyer_comp& buyer_comp, broker_comp& broker_comp)
 {
     if (find(sale.get_id()))
@@ -89,23 +109,58 @@ void sale_comp::remove_sale_by_flat(int id_flat)
     qDebug("d");
     for (auto iter = list_sales.begin(); iter != list_sales.end(); iter++)
     {
+        qDebug() << (*iter).get_flat().get_id() << "aaaa";
         if ((*iter).get_flat().get_id() == id_flat)
         {
+            qDebug() << (*iter).get_flat().get_id();
             qDebug("deleted");
             list_sales.erase(iter);
+            return;
         }
     }
 }
 
 
-void sale_comp::remove_sale_by_buyer(int id_buyer, flat_comp& flat_comp)
+void sale_comp::remove_sale_by_buyer(int id_buyer)
 {
     for (auto iter = list_sales.begin(); iter != list_sales.end(); iter++)
     {
+        qDebug() << (*iter).get_buyer().get_id() << "aaaa";
         if ((*iter).get_buyer().get_id() == id_buyer)
         {
-            flat_comp.remove_flat(iter->get_flat().get_id());
+            qDebug() << (*iter).get_buyer().get_id();
             list_sales.erase(iter);
+            return;
+        }
+    }
+}
+
+
+void sale_comp::remove_sale_by_broker(int id_broker)
+{
+    for (auto iter = list_sales.begin(); iter != list_sales.end(); iter++)
+    {
+        qDebug() << (*iter).get_broker().get_id() << "aaaa";
+        if ((*iter).get_broker().get_id() == id_broker)
+        {
+            qDebug() << (*iter).get_broker().get_id();
+            list_sales.erase(iter);
+            return;
+        }
+    }
+}
+
+
+void sale_comp::remove_sale_by_seller(int id_seller)
+{
+    for (auto iter = list_sales.begin(); iter != list_sales.end(); iter++)
+    {
+        qDebug() << (*iter).get_flat().get_salesman().get_id() << "aaaa";
+        if ((*iter).get_flat().get_salesman().get_id() == id_seller)
+        {
+            qDebug() << (*iter).get_flat().get_salesman().get_id();
+            list_sales.erase(iter);
+            return;
         }
     }
 }

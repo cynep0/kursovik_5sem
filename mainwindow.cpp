@@ -1,9 +1,11 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
+    qDebug("start");
     ui->setupUi(this);
 
     //валидаторы
@@ -198,9 +200,19 @@ void MainWindow::on_btn_add_buyer_clicked()
 
 void MainWindow::on_btn_del_buyer_clicked()
 {
-    while(sale_comp.find_by_buyer(ui->lineEdit_del_buyer->text().toInt()))
-        sale_comp.remove_sale_by_buyer(ui->lineEdit_del_buyer->text().toInt(), flat_comp);
-    buyer_comp.remove_buyer(ui->lineEdit_del_buyer->text().toInt());
+    if (ui->lineEdit_del_buyer->text() != "")
+    {
+        while(sale_comp.find_by_buyer(ui->lineEdit_del_buyer->text().toInt()))
+            sale_comp.remove_sale_by_buyer(ui->lineEdit_del_buyer->text().toInt());
+        buyer_comp.remove_buyer(ui->lineEdit_del_buyer->text().toInt());
+    }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("заполните поле");
+        msgBox.setIcon(QMessageBox::Information);
+        msgBox.exec();
+    }
 }
 
 
@@ -213,8 +225,21 @@ void MainWindow::on_btn_add_flat_clicked()
 
 void MainWindow::on_btn_del_flat_clicked()
 {
-    sale_comp.remove_sale_by_flat(ui->lineEdit_del_flat->text().toInt());
-    flat_comp.remove_flat(ui->lineEdit_del_flat->text().toInt());
+    if (ui->lineEdit_del_flat->text() != "")
+    {
+        qDebug("point0");
+        sale_comp.remove_sale_by_flat(ui->lineEdit_del_flat->text().toInt());
+        qDebug("point1");
+        flat_comp.remove_flat(ui->lineEdit_del_flat->text().toInt());
+        qDebug("point3");
+    }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("заполните поле");
+        msgBox.setIcon(QMessageBox::Information);
+        msgBox.exec();
+    }
 }
 
 
@@ -227,7 +252,17 @@ void MainWindow::on_btn_add_sale_clicked()
 
 void MainWindow::on_btn_del_sale_clicked()
 {
-    sale_comp.remove_sale(ui->lineEdit_del_sale->text().toInt(), flat_comp);
+    if (ui->lineEdit_del_sale->text() != "")
+    {
+        sale_comp.remove_sale(ui->lineEdit_del_sale->text().toInt(), flat_comp);
+    }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("заполните поле");
+        msgBox.setIcon(QMessageBox::Information);
+        msgBox.exec();
+    }
 }
 
 
@@ -242,5 +277,43 @@ void MainWindow::on_btn_add_broker_clicked()
 {
     add_broker *br_form = new add_broker(&broker_comp);
     br_form->show();
+}
+
+
+void MainWindow::on_btn_del_salesman_clicked()
+{
+    if (ui->lineEdit_del_salesman->text() != "")
+    {
+        while(sale_comp.find_by_seller(ui->lineEdit_del_salesman->text().toInt()))
+            sale_comp.remove_sale_by_seller(ui->lineEdit_del_salesman->text().toInt());
+        while(flat_comp.find_by_seller(ui->lineEdit_del_salesman->text().toInt()))
+            flat_comp.remove_flat_by_seller(ui->lineEdit_del_salesman->text().toInt());
+        salesman_comp.remove_salesman(ui->lineEdit_del_salesman->text().toInt());
+    }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("заполните поле");
+        msgBox.setIcon(QMessageBox::Information);
+        msgBox.exec();
+    }
+}
+
+
+void MainWindow::on_btn_del_broker_clicked()
+{
+    if (ui->lineEdit_del_broker->text() != "")
+    {
+        while(sale_comp.find_by_broker(ui->lineEdit_del_broker->text().toInt()))
+            sale_comp.remove_sale_by_broker(ui->lineEdit_del_broker->text().toInt());
+        broker_comp.remove_broker(ui->lineEdit_del_broker->text().toInt());
+    }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("заполните поле");
+        msgBox.setIcon(QMessageBox::Information);
+        msgBox.exec();
+    }
 }
 

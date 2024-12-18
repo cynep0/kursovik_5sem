@@ -23,6 +23,16 @@ flat flat_comp::get_flat(int id) {
 }
 
 
+bool flat_comp::find_by_seller(int id_seller)
+{
+    for (flat f: list_flats) {
+        if (f.get_salesman().get_id() == id_seller)
+            return true;
+    }
+    return false;
+}
+
+
 void flat_comp::change_sold(int id, bool sb)
 {
     for (auto iter = list_flats.begin(); iter != list_flats.end(); iter++){
@@ -78,6 +88,22 @@ void flat_comp::remove_flat(int id)
     msgBox.exec();
 
 }
+
+
+void flat_comp::remove_flat_by_seller(int id_seller)
+{
+    for (auto iter = list_flats.begin(); iter != list_flats.end(); iter++)
+    {
+        qDebug() << (*iter).get_salesman().get_id() << "aaaa";
+        if ((*iter).get_salesman().get_id() == id_seller)
+        {
+            qDebug() << (*iter).get_salesman().get_id();
+            list_flats.erase(iter);
+            return;
+        }
+    }
+}
+
 
 std::list<flat> flat_comp::get_flats()
 {

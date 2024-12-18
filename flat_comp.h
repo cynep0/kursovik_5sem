@@ -13,10 +13,12 @@ private:
 public:
     bool find(int id);
     flat get_flat(int id);
+    bool find_by_seller(int id_seller);
     void change_sold(int id, bool sb);
     bool is_sold(int id);
     void add_flat(flat flat);
     void remove_flat(int id);
+    void remove_flat_by_seller(int id_seller);
     std::list<flat> get_flats();
 };
 
