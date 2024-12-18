@@ -23,6 +23,15 @@ broker broker_comp::get_broker(int id) {
 }
 
 
+void broker_comp::plus_number_of_sales(int id)
+{
+    for (auto iter = list_brokers.begin(); iter != list_brokers.end(); iter++){
+        if (iter->get_id() == id)
+            iter->plus_number_of_sales();
+    }
+}
+
+
 void broker_comp::add_broker(broker broker)
 {
     if (!find(broker.get_id()))

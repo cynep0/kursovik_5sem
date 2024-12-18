@@ -79,9 +79,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     flat_comp.add_flat(flat5);
 
 
-    broker broker1(1, "Полин Даниил Владимирович", "4018 232343", "8 923 123 53 63", 1);
-    broker broker2(2, "Лещев Александр Иванович", "4016 384739", "8 922 234 22 34", 1);
-    broker broker3(3, "Алатырев Данила Артемович", "4018 274642", "8 933 575 54 34", 1);
+    broker broker1(1, "Полин Даниил Владимирович", "4018 232343", "8 923 123 53 63", 0);
+    broker broker2(2, "Лещев Александр Иванович", "4016 384739", "8 922 234 22 34", 0);
+    broker broker3(3, "Алатырев Данила Артемович", "4018 274642", "8 933 575 54 34", 0);
     broker broker4(4, "Пенязь Анастасия Сергеевна", "4018 343453", "8 944 668 24 56", 0);
 
     broker_comp.add_broker(broker1);
@@ -94,9 +94,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     sale sale2(2, flat2, buyer3, broker2);
     sale sale3(3, flat3, buyer3, broker3);
 
-    sale_comp.add_sale(sale1, flat_comp, buyer_comp);
-    sale_comp.add_sale(sale2, flat_comp, buyer_comp);
-    sale_comp.add_sale(sale3, flat_comp, buyer_comp);
+    sale_comp.add_sale(sale1, flat_comp, buyer_comp, broker_comp);
+    sale_comp.add_sale(sale2, flat_comp, buyer_comp, broker_comp);
+    sale_comp.add_sale(sale3, flat_comp, buyer_comp, broker_comp);
 
     ui->tableView_flat->resizeColumnsToContents();
     ui->tableView_buyer->resizeColumnsToContents();
@@ -220,7 +220,7 @@ void MainWindow::on_btn_del_flat_clicked()
 
 void MainWindow::on_btn_add_sale_clicked()
 {
-    add_sale *s_form = new add_sale(&flat_comp, &buyer_comp, &sale_comp);
+    add_sale *s_form = new add_sale(&flat_comp, &buyer_comp, &sale_comp, &broker_comp);
     s_form->show();
 }
 

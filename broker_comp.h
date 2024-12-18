@@ -13,6 +13,7 @@ private:
 public:
     bool find(int id);
     broker get_broker(int id);
+    void plus_number_of_sales(int id);
     void add_broker(broker broker);
     void remove_broker(int id);
     std::list<broker> get_brokers();

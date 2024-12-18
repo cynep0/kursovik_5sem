@@ -3,16 +3,32 @@
 #include <QMessageBox>
 #include <QIntValidator>
 
-add_sale::add_sale(flat_comp *flat_comp, buyer_comp *buyer_comp, sale_comp *sale_comp)
+add_sale::add_sale(flat_comp *flat_comp, buyer_comp *buyer_comp, sale_comp *sale_comp, broker_comp *broker_comp)
     :ui(new Ui::add_sale)
 {
     ui->setupUi(this);
     ui->lineEdit_id->setValidator( new QIntValidator(1, 10000, this));
-    ui->lineEdit_id_buyer->setValidator( new QIntValidator(1, 10000, this));
-    ui->lineEdit_id_flat->setValidator( new QIntValidator(1, 10000, this));
     flat_comp1 = flat_comp;
     buyer_comp1 = buyer_comp;
     sale_comp1 = sale_comp;
+    broker_comp1 = broker_comp;
+
+    ui->comboBox_buyer->clear();
+    for (const buyer& b : buyer_comp1->get_buyers())
+    {
+        ui->comboBox_buyer->addItem(QString::number(b.get_id()));
+    }
+    ui->comboBox_flat->clear();
+    for (const flat& f : flat_comp1->get_flats())
+    {
+        if (!f.get_is_sold())
+            ui->comboBox_flat->addItem(QString::number(f.get_id()));
+    }
+    ui->comboBox_broker->clear();
+    for (const broker& b : broker_comp1->get_brokers())
+    {
+        ui->comboBox_broker->addItem(QString::number(b.get_id()));
+    }
 }
 
 add_sale::~add_sale()
@@ -22,14 +38,13 @@ add_sale::~add_sale()
 
 void add_sale::on_pushButton_clicked()
 {
-    if (ui->lineEdit_id->text() != "" && ui->lineEdit_id_buyer->text() != "" && ui->lineEdit_id_flat->text() != "")
+    if (ui->lineEdit_id->text() != "" && ui->comboBox_buyer->currentText() != "" && ui->comboBox_flat->currentText() != ""  && ui->comboBox_broker->currentText() != "")
     {
-        buyer buyer4(4, "Проверкин Проверяльщик Проверялков", "1234 567890", "8 611 666 61 66", 1000);
-        salesman salesman2(2, "Ковалева Анна Александровна", "4002 112345", "8 911 127 43 73");
-        flat flat4(4, "ул. Пушкина д.Колотушкина", flat::estate_type::COTTAGE, 60, 17000000, false, false, 10, salesman2);
-        broker broker3(3, "Алатырев Данила Артемович", "4018 274642", "8 933 575 54 34", 0);
-        sale sale1(ui->lineEdit_id->text().toInt(), flat4, buyer4, broker3);
-        sale_comp1->add_sale(sale1, *flat_comp1, *buyer_comp1);
+        buyer buyer1 = buyer_comp1->get_buyer(ui->comboBox_buyer->currentText().toInt());
+        flat flat1 = flat_comp1->get_flat(ui->comboBox_flat->currentText().toInt());
+        broker broker1 = broker_comp1->get_broker(ui->comboBox_broker->currentText().toInt());
+        sale sale1(ui->lineEdit_id->text().toInt(), flat1, buyer1, broker1);
+        sale_comp1->add_sale(sale1, *flat_comp1, *buyer_comp1, *broker_comp1);
         this->close();
     }
     else

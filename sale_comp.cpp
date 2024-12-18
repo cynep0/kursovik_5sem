@@ -22,7 +22,7 @@ bool sale_comp::find_by_buyer(int id_b)
 }
 
 
-void sale_comp::add_sale(sale sale, flat_comp& flat_comp, buyer_comp& buyer_comp)
+void sale_comp::add_sale(sale sale, flat_comp& flat_comp, buyer_comp& buyer_comp, broker_comp& broker_comp)
 {
     if (find(sale.get_id()))
     {
@@ -57,6 +57,7 @@ void sale_comp::add_sale(sale sale, flat_comp& flat_comp, buyer_comp& buyer_comp
         return;
     }
     flat_comp.change_sold(sale.get_flat().get_id(), true);
+    broker_comp.plus_number_of_sales(sale.get_broker().get_id());
     list_sales.push_back(sale);
     notify_observers();
 }

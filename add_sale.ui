@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>325</width>
-    <height>405</height>
+    <height>429</height>
    </rect>
   </property>
   <property name="font">
@@ -22,7 +22,7 @@
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>320</y>
+     <y>370</y>
      <width>191</width>
      <height>29</height>
     </rect>
@@ -42,31 +42,6 @@
    </property>
    <property name="text">
     <string>id договора</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_id_buyer">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>150</y>
-     <width>241</width>
-     <height>28</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_id_flat">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>220</y>
-     <width>241</width>
-     <height>28</height>
-    </rect>
    </property>
   </widget>
   <widget class="QLabel" name="lb_id_buyer">
@@ -96,13 +71,56 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>190</y>
+     <y>189</y>
      <width>101</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
    <property name="text">
     <string>id квартиры</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox_buyer">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>150</y>
+     <width>241</width>
+     <height>28</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox_flat">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>220</y>
+     <width>241</width>
+     <height>28</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lb_id_broker">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>259</y>
+     <width>101</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>id маклера</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox_broker">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>290</y>
+     <width>241</width>
+     <height>28</height>
+    </rect>
    </property>
   </widget>
  </widget>

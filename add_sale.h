@@ -16,7 +16,7 @@ class add_sale : public QWidget
     Q_OBJECT
 
 public:
-    add_sale(flat_comp *flat_comp, buyer_comp *buyer_comp, sale_comp *sale_comp);
+    add_sale(flat_comp *flat_comp, buyer_comp *buyer_comp, sale_comp *sale_comp, broker_comp *broker_comp);
     ~add_sale();
 
 private slots:
@@ -27,6 +27,7 @@ private:
     flat_comp *flat_comp1;
     buyer_comp *buyer_comp1;
     sale_comp *sale_comp1;
+    broker_comp *broker_comp1;
 };
 
 #endif // ADD_SALE_H

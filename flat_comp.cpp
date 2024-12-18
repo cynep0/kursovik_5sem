@@ -12,6 +12,17 @@ bool flat_comp::find(int id)
 }
 
 
+flat flat_comp::get_flat(int id) {
+    for (flat& f: list_flats) {
+        if (f.get_id() == id) {
+            return f;
+        }
+    }
+    salesman salesman0(0, "", "", "");
+    return flat(0, "", flat::FLAT, 0, 0, false, false, 0, salesman0);
+}
+
+
 void flat_comp::change_sold(int id, bool sb)
 {
     for (auto iter = list_flats.begin(); iter != list_flats.end(); iter++){

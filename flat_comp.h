@@ -12,6 +12,7 @@ private:
     std::list<flat> list_flats;
 public:
     bool find(int id);
+    flat get_flat(int id);
     void change_sold(int id, bool sb);
     bool is_sold(int id);
     void add_flat(flat flat);
