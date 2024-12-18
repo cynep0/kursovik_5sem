@@ -15,6 +15,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     buyer_comp.add_observer(this);
     flat_comp.add_observer(this);
     sale_comp.add_observer(this);
+    salesman_comp.add_observer(this);
+    broker_comp.add_observer(this);
 
      // Инициализируем модели для таблиц
     model_flat = new QStandardItemModel(this);
@@ -32,7 +34,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     model_broker = new QStandardItemModel(this);
     ui->tableView_broker->setModel(model_broker);
 
-    model_flat->setHorizontalHeaderLabels(QStringList() << "id квартиры" << "адрес" << "площадь" << "наличие страховки" << "состояние продажи");
+    model_flat->setHorizontalHeaderLabels(QStringList() << "id квартиры" << "адрес" << "тип" << "площадь" << "цена (руб.)" << "наличие страховки" << "состояние продажи" << "оценка" << "Продавец" << "id");
     model_buyer->setHorizontalHeaderLabels(QStringList() << "id покупателя" << "ФИО" << "паспорт" << "номер телефона" << "кредитный рейтинг");
     model_sale->setHorizontalHeaderLabels(QStringList() << "id договора" << "id покупателя" << "id квартиры");
     model_salesman->setHorizontalHeaderLabels(QStringList() << "id продовца" << "ФИО" << "паспорт" << "номер телефона");
@@ -56,11 +58,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     salesman_comp.add_salesman(salesman1);
 
 
-    flat flat1(1, "ул. Коломенская д.15-17 кв.93", 60, true, false);
-    flat flat2(2, "ул. Коломенская д.15-17 кв.90", 60, false, false);
-    flat flat3(3, "ул. Ивановская д.57 кв.6", 60, false, false);
-    flat flat4(4, "ул. Пушкина д.Колотушкина кв.37", 60, false, false);
-    flat flat5(5, "Ленинский д.6 кв.226", 60, false, false);
+    flat flat1(1, "ул. Коломенская д.15-17 кв.93", flat::estate_type::FLAT, 60, 10000000, true, false, 9, salesman1);
+    flat flat2(2, "ул. Коломенская д.15-17 кв.90", flat::estate_type::FLAT, 60, 9000000, false, false, 8, salesman1);
+    flat flat3(3, "ул. Ивановская д.57 кв.6",flat::estate_type::OFFICE, 60, 5000000, false, false, 6, salesman1);
+    flat flat4(4, "ул. Пушкина д.Колотушкина", flat::estate_type::COTTAGE, 60, 17000000, false, false, 10, salesman1);
+    flat flat5(5, "Ленинский д.6 кв.226", flat::estate_type::FLAT, 60, 5000000, false, false, 5, salesman1);
 
 
     flat_comp.add_flat(flat1);
@@ -86,6 +88,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     ui->tableView_flat->resizeColumnsToContents();
     ui->tableView_buyer->resizeColumnsToContents();
     ui->tableView_sale->resizeColumnsToContents();
+    ui->tableView_salesman->resizeColumnsToContents();
+    ui->tableView_broker->resizeColumnsToContents();
 }
 
 
@@ -106,9 +110,24 @@ void MainWindow::update() {
         QList<QStandardItem*> row;
         row << new QStandardItem(QString::number(flat.get_id()));
         row << new QStandardItem(flat.get_adres());
+        switch (flat.get_type()) {
+        case flat::FLAT:
+            row << new QStandardItem("квартира");
+            break;
+        case flat::OFFICE:
+            row << new QStandardItem("офис");
+            break;
+        case flat::COTTAGE:
+            row << new QStandardItem("дом");
+            break;
+        }
         row << new QStandardItem(QString::number(flat.get_area()));
+        row << new QStandardItem(QString::number(flat.get_cost()));
         row << new QStandardItem(flat.get_is_ins() ? "застрахована" : "не застрахована");
         row << new QStandardItem(flat.get_is_sold() ? "куплена" : "продается");
+        row << new QStandardItem(QString::number(flat.get_rate()));
+        row << new QStandardItem(flat.get_salesman().get_name());
+        row << new QStandardItem(QString::number(flat.get_salesman().get_id()));
         model_flat->appendRow(row);
     }
 
@@ -168,7 +187,7 @@ void MainWindow::on_btn_del_buyer_clicked()
 
 void MainWindow::on_btn_add_flat_clicked()
 {
-    add_flat *f_form = new add_flat(&flat_comp);
+    add_flat *f_form = new add_flat(&flat_comp, &salesman_comp);
     f_form->show();
 }
 
@@ -190,5 +209,19 @@ void MainWindow::on_btn_add_sale_clicked()
 void MainWindow::on_btn_del_sale_clicked()
 {
     sale_comp.remove_sale(ui->lineEdit_del_sale->text().toInt(), flat_comp);
+}
+
+
+void MainWindow::on_btn_add_salesman_clicked()
+{
+    add_salesman *sm_form = new add_salesman(&salesman_comp);
+    sm_form->show();
+}
+
+
+void MainWindow::on_btn_add_broker_clicked()
+{
+    add_broker *br_form = new add_broker(&broker_comp);
+    br_form->show();
 }
 

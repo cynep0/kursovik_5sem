@@ -141,8 +141,8 @@
    <widget class="QLineEdit" name="lineEdit_del_sale">
     <property name="geometry">
      <rect>
-      <x>690</x>
-      <y>490</y>
+      <x>810</x>
+      <y>510</y>
       <width>113</width>
       <height>28</height>
      </rect>
@@ -151,8 +151,8 @@
    <widget class="QLineEdit" name="lineEdit_del_buyer">
     <property name="geometry">
      <rect>
-      <x>690</x>
-      <y>420</y>
+      <x>810</x>
+      <y>440</y>
       <width>113</width>
       <height>28</height>
      </rect>
@@ -161,8 +161,8 @@
    <widget class="QLineEdit" name="lineEdit_del_flat">
     <property name="geometry">
      <rect>
-      <x>690</x>
-      <y>350</y>
+      <x>810</x>
+      <y>370</y>
       <width>113</width>
       <height>28</height>
      </rect>
@@ -171,8 +171,8 @@
    <widget class="QLabel" name="lb_del_flat">
     <property name="geometry">
      <rect>
-      <x>690</x>
-      <y>320</y>
+      <x>810</x>
+      <y>340</y>
       <width>101</width>
       <height>20</height>
      </rect>
@@ -184,8 +184,8 @@
    <widget class="QLabel" name="lb_del_buyer">
     <property name="geometry">
      <rect>
-      <x>690</x>
-      <y>390</y>
+      <x>810</x>
+      <y>410</y>
       <width>111</width>
       <height>20</height>
      </rect>
@@ -197,8 +197,8 @@
    <widget class="QLabel" name="lb_del_sale">
     <property name="geometry">
      <rect>
-      <x>690</x>
-      <y>460</y>
+      <x>810</x>
+      <y>480</y>
       <width>101</width>
       <height>20</height>
      </rect>
@@ -210,8 +210,8 @@
    <widget class="QPushButton" name="btn_add_buyer">
     <property name="geometry">
      <rect>
-      <x>720</x>
-      <y>160</y>
+      <x>840</x>
+      <y>120</y>
       <width>181</width>
       <height>29</height>
      </rect>
@@ -223,8 +223,8 @@
    <widget class="QPushButton" name="btn_add_sale">
     <property name="geometry">
      <rect>
-      <x>720</x>
-      <y>210</y>
+      <x>840</x>
+      <y>170</y>
       <width>181</width>
       <height>29</height>
      </rect>
@@ -236,8 +236,8 @@
    <widget class="QPushButton" name="btn_add_flat">
     <property name="geometry">
      <rect>
-      <x>720</x>
-      <y>110</y>
+      <x>840</x>
+      <y>70</y>
       <width>181</width>
       <height>29</height>
      </rect>
@@ -249,8 +249,8 @@
    <widget class="QPushButton" name="btn_del_flat">
     <property name="geometry">
      <rect>
-      <x>820</x>
-      <y>350</y>
+      <x>940</x>
+      <y>370</y>
       <width>141</width>
       <height>29</height>
      </rect>
@@ -262,8 +262,8 @@
    <widget class="QPushButton" name="btn_del_buyer">
     <property name="geometry">
      <rect>
-      <x>820</x>
-      <y>420</y>
+      <x>940</x>
+      <y>440</y>
       <width>141</width>
       <height>29</height>
      </rect>
@@ -275,14 +275,40 @@
    <widget class="QPushButton" name="btn_del_sale">
     <property name="geometry">
      <rect>
-      <x>820</x>
-      <y>490</y>
+      <x>940</x>
+      <y>510</y>
       <width>141</width>
       <height>29</height>
      </rect>
     </property>
     <property name="text">
      <string>удалить договор</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_add_salesman">
+    <property name="geometry">
+     <rect>
+      <x>840</x>
+      <y>220</y>
+      <width>181</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>добавить продовца</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_add_broker">
+    <property name="geometry">
+     <rect>
+      <x>840</x>
+      <y>270</y>
+      <width>181</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>добавить маклера</string>
     </property>
    </widget>
   </widget>

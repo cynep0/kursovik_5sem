@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>325</width>
-    <height>405</height>
+    <width>340</width>
+    <height>643</height>
    </rect>
   </property>
   <property name="font">
@@ -21,60 +21,60 @@
   <widget class="QLabel" name="lb_id">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>40</x>
      <y>50</y>
-     <width>101</width>
+     <width>151</width>
      <height>20</height>
     </rect>
    </property>
    <property name="text">
-    <string>id квртиры</string>
+    <string>id недвижимости</string>
    </property>
   </widget>
-  <widget class="QLabel" name="lb_area">
+  <widget class="QLabel" name="lb_type">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>40</x>
      <y>190</y>
      <width>161</width>
      <height>20</height>
     </rect>
    </property>
    <property name="text">
-    <string>площадь квартиры</string>
+    <string>тип недвижимости</string>
    </property>
   </widget>
   <widget class="QLabel" name="lb_adres">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>40</x>
      <y>120</y>
-     <width>141</width>
+     <width>181</width>
      <height>20</height>
     </rect>
    </property>
    <property name="text">
-    <string>адрес квартиры</string>
+    <string>адрес недвижимости</string>
    </property>
   </widget>
   <widget class="QLabel" name="lb_ins">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>260</y>
-     <width>251</width>
+     <x>20</x>
+     <y>400</y>
+     <width>301</width>
      <height>20</height>
     </rect>
    </property>
    <property name="text">
-    <string>есть ли страховка на квартиру</string>
+    <string>есть ли страховка на недвижимость</string>
    </property>
   </widget>
   <widget class="QCheckBox" name="checkBox_ins">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>280</y>
+     <x>50</x>
+     <y>420</y>
      <width>31</width>
      <height>26</height>
     </rect>
@@ -86,7 +86,7 @@
   <widget class="QLineEdit" name="lineEdit_id">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>40</x>
      <y>80</y>
      <width>241</width>
      <height>28</height>
@@ -96,18 +96,8 @@
   <widget class="QLineEdit" name="lineEdit_adres">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>40</x>
      <y>150</y>
-     <width>241</width>
-     <height>28</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_area">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>220</y>
      <width>241</width>
      <height>28</height>
     </rect>
@@ -117,13 +107,130 @@
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>330</y>
+     <y>600</y>
      <width>191</width>
      <height>29</height>
     </rect>
    </property>
    <property name="text">
     <string>добавить</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_area">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>290</y>
+     <width>241</width>
+     <height>28</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lb_area">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>260</y>
+     <width>201</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>площадь недвижимости</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox_type">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>220</y>
+     <width>241</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>Кваритра</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Офис</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Дом</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="lb_cost">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>330</y>
+     <width>221</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>стоимость недвижимости</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_cost">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>360</y>
+     <width>241</width>
+     <height>28</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_rate">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>480</y>
+     <width>241</width>
+     <height>28</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lb_rate">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>450</y>
+     <width>221</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>оценка</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox_seller">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>550</y>
+     <width>241</width>
+     <height>28</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lb_seller">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>520</y>
+     <width>161</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>продавец</string>
    </property>
   </widget>
  </widget>

@@ -15,6 +15,8 @@
 #include "add_buyer.h"
 #include "add_flat.h"
 #include "add_sale.h"
+#include "add_salesman.h"
+#include "add_broker.h"
 
 
 class MainWindow : public QMainWindow, public observer
@@ -33,6 +35,10 @@ private slots:
     void on_btn_del_flat_clicked();
     void on_btn_add_sale_clicked();
     void on_btn_del_sale_clicked();
+
+    void on_btn_add_salesman_clicked();
+
+    void on_btn_add_broker_clicked();
 
 private:
     Ui::MainWindow *ui;

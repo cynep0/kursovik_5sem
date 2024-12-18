@@ -10,6 +10,7 @@ add_buyer::add_buyer(buyer_comp *buyer_comp)
 {
     ui->setupUi(this);
     ui->lineEdit_id->setValidator( new QIntValidator(1, 10000, this));
+    ui->lineEdit_credit->setValidator( new QIntValidator(1, 100, this));
 
     buyer_comp1 = buyer_comp;
 }
